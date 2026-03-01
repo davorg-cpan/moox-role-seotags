@@ -124,6 +124,7 @@ Returns all tags (title, canonical, and OpenGraph) as a single string.
 =cut
 
 use feature qw[signatures];
+no if $] <= 5.036, 'warnings', 'experimental::signatures';
 use Moo::Role;
 use HTML::Tiny;
 

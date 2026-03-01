@@ -1,5 +1,8 @@
 # MooX::Role::SEOTags
 
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/davorg-cpan/moox-role-seotags/perltest.yml)
+![CPAN Version](https://img.shields.io/cpan/v/MooX-Role-SEOTags)
+
 A Moo role for generating SEO meta tags (OpenGraph, Twitter, and more) for your Perl web objects.
 
 ## Features

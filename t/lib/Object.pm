@@ -32,6 +32,7 @@ has image => (
 );
 
 sub og_title { shift->title }
+sub og_author { shift->author }
 sub og_type { shift->type }
 sub og_description { shift->desc }
 sub og_url { shift->url }

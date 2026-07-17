@@ -146,7 +146,7 @@ our $VERSION = '1.1.0';
 requires qw[og_title og_type og_description og_url];
 
 has _html => (
-  is => 'ro',
+  is => 'lazy',
   default => sub { HTML::Tiny->new(mode => 'html') },
 );
 
@@ -160,7 +160,7 @@ sub title_tag($self) {
 
 sub author_tag($self) {
   return '' unless $self->can('author');
-  return $self->_tag('meta', { name => 'author', content => $self->author });
+  return $self->_tag('meta', { name => 'author', content => $self->og_author });
 }
 
 sub canonical_tag($self) {

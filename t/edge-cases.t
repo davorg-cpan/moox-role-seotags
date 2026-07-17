@@ -3,15 +3,15 @@ use strict;
 use warnings;
 use Test::More;
 use lib 't/lib';
-use Object;
+use TestObject;
 
 # Test missing required attributes
 {
     my $error = '';
     eval {
-        Object->new(
+        TestObject->new({
             # missing title, type, url, desc (all required via role)
-        );
+        });
     };
     $error = $@;
     like($error, qr/(title|type|desc)/, 'Dies if required attribute missing');
@@ -19,13 +19,13 @@ use Object;
 
 # Test missing optional attribute (og_image)
 {
-    my $obj = Object->new(
+    my $obj = TestObject->new({
         title => 't',
         type  => 'object',
         url   => 'https://example.com/',
         desc  => 'desc',
         # image omitted
-    );
+    });
     my $og_image_tag = $obj->og_image_tag;
     is($og_image_tag, '', 'og_image_tag returns empty string if og_image missing');
 }

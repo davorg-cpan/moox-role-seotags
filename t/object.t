@@ -2,9 +2,9 @@ use Test::More;
 
 use lib 't/lib';
 
-use Object;
+use TestObject;
 
-my $obj = Object->new({
+my $obj = TestObject->new({
   title => 'title',
   author => 'Someone',
   type => 'object',

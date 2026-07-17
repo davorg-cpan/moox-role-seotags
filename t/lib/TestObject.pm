@@ -1,4 +1,4 @@
-package Object;
+package TestObject;
 
 use Moo;
 use namespace::autoclean;

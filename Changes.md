@@ -1,5 +1,11 @@
 # Change Log
 
+## [Unreleased]
+
+### Fixed
+
+- Rename test object to TestObject
+
 ## [1.1.1] - 2026-07-17
 
 ### Fixed

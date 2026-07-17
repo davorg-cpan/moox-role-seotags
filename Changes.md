@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.1.0] - 2026-07-17
+
+### Added
+
+- Added support for <meta name="title">, <meta property="og:site_name"> and <meta property="og:image:alt">
+
 ## [1.0.1] - 2025-09-22
 
 ### Changed

@@ -1,6 +1,12 @@
 # Change Log
 
-## [Unreleased]
+## [1.2.0]
+
+### Added
+
+- New `core_tags()` method
+
+- "Tag Groups" documentation
 
 ### Fixed
 

@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.2.1]
+
+### Fixed
+
+- Some edge cases around image alt and Twitter cards
+
 ## [1.2.0]
 
 ### Added

@@ -239,7 +239,7 @@ no if $] <= 5.036, 'warnings', 'experimental::signatures';
 use Moo::Role;
 use HTML::Tiny;
 
-our $VERSION = '1.2.0';
+our $VERSION = '1.2.1';
 
 requires qw[og_title og_type og_description og_url];
 
@@ -305,8 +305,22 @@ sub og_image_tag($self) {
 }
 
 sub og_image_alt_tag($self) {
+  return '' unless $self->can('og_image');
   return '' unless $self->can('og_image_alt');
-  return $self->_tag('meta', { property => "og:image:alt", content => $self->og_image_alt });
+
+  my $image = $self->og_image;
+  return '' unless defined $image && length $image;
+
+  my $alt = $self->og_image_alt;
+  return '' unless defined $alt && length $alt;
+
+  return $self->_tag(
+    'meta',
+    {
+      property => 'og:image:alt',
+      content  => $alt,
+    },
+  );
 }
 
 sub og_tags($self) {
@@ -321,12 +335,30 @@ sub og_tags($self) {
 
 sub twitter_card_tag($self) {
   my $card_type;
+
   if ($self->can('twitter_card_type')) {
     $card_type = $self->twitter_card_type;
-  } else {
-    $card_type = $self->can('og_image') ? 'summary_large_image' : 'summary';
   }
-  return $self->_tag('meta', { name => "twitter:card",  content =>$card_type });
+  else {
+    my $has_image = 0;
+
+    if ($self->can('og_image')) {
+      my $image = $self->og_image;
+      $has_image = defined $image && length $image;
+    }
+
+    $card_type = $has_image
+      ? 'summary_large_image'
+      : 'summary';
+  }
+
+  return $self->_tag(
+    'meta',
+    {
+      name    => 'twitter:card',
+      content => $card_type,
+    },
+  );
 }
 
 sub twitter_title_tag($self) {
@@ -338,8 +370,18 @@ sub twitter_description_tag($self) {
 }
 
 sub twitter_image_tag($self) {
-  return unless $self->can('og_image');
-  return $self->_tag('meta', { name => "twitter:image", content => $self->og_image });
+  return '' unless $self->can('og_image');
+
+  my $image = $self->og_image;
+  return '' unless defined $image && length $image;
+
+  return $self->_tag(
+    'meta',
+    {
+      name    => 'twitter:image',
+      content => $image,
+    },
+  );
 }
 
 sub twitter_tags($self) {

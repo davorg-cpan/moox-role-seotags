@@ -2,7 +2,8 @@
 use strict;
 use warnings;
 use Test::More;
-use lib 't/lib';
+use FindBin '$RealBin';
+use lib "$RealBin/lib";
 use TestObject;
 
 # Test missing required attributes

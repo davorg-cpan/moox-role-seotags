@@ -1,3 +1,5 @@
+use strict;
+use warnings;
 use Test::More;
 
 use FindBin '$RealBin';
@@ -77,12 +79,12 @@ for (@tests) {
   my $method = $_->{method};
   my $html   = $obj->$method;
 
-  like $html, qr[^<$_->{tag}], "Tag <$_->{tag}> is correct";
+  like $html, qr[^<\Q$_->{tag}\E], "Tag <$_->{tag}> is correct";
   if (exists $_->{text} and $_->{text}) {
-    like $html, qr[>$_->{text}<], qq[Text "$_->{text}" is correct];
+    like $html, qr[>\Q$_->{text}\E<], qq[Text "$_->{text}" is correct];
   }
   for my $attr (@{ $_->{attrs} }) {
-    like $html, qr[$attr], qq[Attribute '$attr' is correct];
+    like $html, qr[\Q$attr\E], qq[Attribute '$attr' is correct];
   }
 }
 

@@ -1,5 +1,11 @@
 # Change Log
 
+## [1.2.2] - 2026-09-20]
+
+### Fixed
+
+- Include TestObject.pm
+
 ## [1.2.1] - 2026-07-29
 
 ### Fixed
